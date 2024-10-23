@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+index页面
+<shiro:guest>
+    欢迎游客访问，去<a href="login.html">登录</a>
+</shiro:guest>
+<shiro:user>
+    <p>已登录用户访问</p>
+    <p>用户：<shiro:principal/>欢迎你！</p>
+    <p>当前用户为<shiro:hasRole name="admin">超级管理员</shiro:hasRole>
+        <shiro:hasRole name="xmanager">行政人员</shiro:hasRole>
+        <shiro:hasRole name="cmanager">仓管人员</shiro:hasRole></p>
+</shiro:user>
+仓库管理
+<ul>
+    <shiro:hasPermission name="sys:c:add"><li>入库</li></shiro:hasPermission>
+    <shiro:hasPermission name="sys:c:del"><li>出库</li></shiro:hasPermission>
+    <shiro:hasPermission name="sys:c:update"><li>修改</li></shiro:hasPermission>
+    <shiro:hasPermission name="sys:c:list"><li>查询</li></shiro:hasPermission>
+</ul>
+订单管理
+<ul>
+    <shiro:hasPermission name="sys:x:add"><li>添加订单</li></shiro:hasPermission>
+    <shiro:hasPermission name="sys:x:del"><li>删除订单</li></shiro:hasPermission>
+    <shiro:hasPermission name="sys:x:update"><li>修改订单</li></shiro:hasPermission>
+    <shiro:hasPermission name="sys:x:list"><li>查询查询</li></shiro:hasPermission>
+</ul>
+</body>
+</html>
